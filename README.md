@@ -1,6 +1,6 @@
 # Slurm Docker Cluster
 
-This is a multi-container Slurm cluster using docker-compose.  
+This is a multi-container Slurm cluster using docker compose.  
 
 The compose file creates named volumes for persistent storage of MySQL data files as well as Slurm state and log directories.
 
@@ -51,20 +51,20 @@ tag:
 docker build --build-arg SLURM_TAG="slurm-23-11-8-1" -t slurm-docker-cluster:23.11.8 .
 ```
 
-Or equivalently using `docker-compose`:
+Or equivalently using `docker compose`:
 
 ```console
-SLURM_TAG=slurm-23-11-8-1 IMAGE_TAG=23.11.8 docker-compose build
+SLURM_TAG=slurm-23-11-8-1 IMAGE_TAG=23.11.8 docker compose build
 ```
 
 Slurm Tags : https://github.com/SchedMD/slurm/tags
 
 ## Starting the Cluster
 
-Run `docker-compose` to instantiate the cluster:
+Run `docker compose` to instantiate the cluster:
 
 ```console
-IMAGE_TAG=24.05.1 docker-compose up -d
+IMAGE_TAG=24.05.1 docker compose up -d
 ```
 
 ## Register the Cluster with SlurmDBD
@@ -80,7 +80,7 @@ script:
 > ready before registering the cluster.  Otherwise, you may get an error such
 > as **sacctmgr: error: Problem talking to the database: Connection refused**.
 >
-> You can check the status of the cluster by viewing the logs: `docker-compose
+> You can check the status of the cluster by viewing the logs: `docker compose
 > logs -f`
 
 ## Accessing the Cluster
@@ -118,8 +118,8 @@ c1
 ## Stopping and Restarting the Cluster
 
 ```console
-docker-compose stop
-docker-compose start
+docker compose stop
+docker compose start
 ```
 
 ## Deleting the Cluster
@@ -127,8 +127,8 @@ docker-compose start
 To remove all containers and volumes, run:
 
 ```console
-docker-compose stop
-docker-compose rm -f
+docker compose stop
+docker compose rm -f
 docker volume rm slurm-docker-cluster_etc_munge slurm-docker-cluster_etc_slurm slurm-docker-cluster_slurm_jobdir slurm-docker-cluster_var_lib_mysql slurm-docker-cluster_var_log_slurm
 ```
 ## Updating the Cluster
@@ -140,7 +140,7 @@ If you want to change the `slurm.conf` or `slurmdbd.conf` file without a rebuild
 (or just one of the files).
 The Cluster will automatically be restarted afterwards with
 ```console
-docker-compose restart
+docker compose restart
 ```
 This might come in handy if you add or remove a node to your cluster or want to test a new setting.
 
